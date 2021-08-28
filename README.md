@@ -1,4 +1,4 @@
-# m3u8 视频在线提取工具
+# m3u8 视频在线提取工具([English version](https://github.com/Momo707577045/m3u8-downloader/blob/master/README-EN.md))
 
 ![界面](http://upyun.luckly-mjw.cn/Assets/m3u8-download/01.jpeg)
 ### [工具在线地址](http://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index.html)，推荐使用 chrome 浏览器。
@@ -92,6 +92,7 @@
 
 ### 核心代码
 【整合及自动下载】
+
 ```
     // 下载整合后的TS文件
     downloadFile(fileDataList, fileName, fileType) {
@@ -106,6 +107,7 @@
       a.remove()
     },
 ```
+
 是的，涉及新知识点的部分只有上面一小段，其他的都是 JS 的基础应用。
 
 除了 vue.js 文件，本工具代码均包含在 index.html 文件里面。包括换行，一共 540 行代码，其中 css 样式 190 行，html 标签 30 行。JS 逻辑代码 300 行。
@@ -121,6 +123,41 @@
 - 借助「mux-mp4.js」，源码来至 [mux.js](https://github.com/videojs/mux.js#mp4)
 - 但 mux.js 存在一个无法计算视频长度的 bug
 - 本人已 fork 该项目，并修复该 bug，修复后的项目[链接在这里](https://github.com/Momo707577045/mux.js)
+
+### 第三方接入
+- 在 url 中通过 source 参数拼接下载地址即可，如：```http://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index.html?source=http://1257120875.vod2.myqcloud.com/0ef121cdvodtransgzp1257120875/3055695e5285890780828799271/v.f230.m3u8```
+- 系统将自动解析该参数
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/16.jpeg)
+
+
+### 油猴插件
+
+![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/15.jpeg)
+
+- 「跳转下载」即新开页面，打开本工具页面，自动携带并解析目标地址
+- 「注入下载」为解决跨域而生，直接将代码注入到当前视频网站，进行视频下载
+- [插件源码点这里](https://github.com/Momo707577045/m3u8-downloader/blob/master/tamper-monkey.js)
+- 手动添加油猴插件步骤
+  - 点击 tamper-monkey「油猴」icon，点击「添加新脚本」
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/21.jpeg)
+
+  - 在当前位置，粘贴上述链接中的源码
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/17.jpeg)
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/18.jpeg)
+
+  - 点击「文本」，「保存」
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/19.jpeg)
+
+  - 得到如下结果，即为添加成功
+
+    ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/20.jpeg)
+
+
 
 ### 完结撒花，感谢阅读。
 ![](http://upyun.luckly-mjw.cn/Assets/m3u8-download/14.jpeg)
