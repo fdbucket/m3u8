@@ -72,13 +72,13 @@
     opacity: 0.9;
   }
   .m-p-language {
-    bottom: 30px;
-  }
-  .m-p-other {
     bottom: 70px;
   }
-  .m-p-tamper {
+  .m-p-other {
     bottom: 110px;
+  }
+  .m-p-tamper {
+    bottom: 30px;
   }
   .m-p-github {
     bottom: 150px;
@@ -338,7 +338,7 @@
   <!--顶部操作提示-->
   <section class="m-p-action g-box">{{tips}}</section>
   <a class="m-p-help" target="_blank" href="https://segmentfault.com/a/1190000021847172">?</a>
-  <a class="m-p-tamper" target="_blank" href="https://greasyfork.org/zh-CN/scripts/422237-m3u8-downloader">油猴插件</a>
+  <a class="m-p-tamper" target="_blank" href="https://blog.luckly-mjw.cn/tool-show/m3u8-downloader/m3u8-downloader.user.js">手动添加油猴插件</a>
   <a class="m-p-github" target="_blank" href="https://github.com/Momo707577045/m3u8-downloader">github</a>
   <a class="m-p-other" target="_blank" href="http://blog.luckly-mjw.cn/tool-show/index.html">其他实用工具</a>
   <a class="m-p-language" href="http://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index-en.html">English version</a>
@@ -523,7 +523,7 @@ new Vue({
       // 在下载页面才触发，代码注入的页面不需要校验
       // 当前协议不一致，切换协议
       if (location.href.indexOf('blog.luckly-mjw.cn') > -1 && this.url.indexOf(location.protocol) === -1) {
-        alert('当前协议不一致，跳转至正确页面重新下载')
+        //alert('当前协议不一致，跳转至正确页面重新下载')
         location.href = `${this.url.split(':')[0]}://blog.luckly-mjw.cn/tool-show/m3u8-downloader/index.html?source=${this.url}`
         return
       }
@@ -543,7 +543,7 @@ new Vue({
 
           // 提取 ts 视频片段地址
           m3u8Str.split('\n').forEach((item) => {
-            if (item.toLowerCase().indexOf('.ts') > -1) {
+            if (item.toLowerCase().indexOf('.ts') > -1 || item.toLowerCase().indexOf('.image') > -1) {
               this.tsUrlList.push(this.applyURL(item, this.url))
               this.finishList.push({
                 title: item,
@@ -624,7 +624,7 @@ new Vue({
           this.downloadTS()
         },
         fail: () => {
-          this.alertError('AES 配置不正确')
+          this.alertError('视频已进行定制化加密，不提供定制化解密下载')
         }
       })
     },
